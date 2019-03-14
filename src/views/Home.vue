@@ -82,7 +82,7 @@
 							</p>
 							<p>
 								<b>Date:</b>
-								{{format(s.episode.first_aired)}}
+								{{format(s.first_aired)}}
 							</p>
 							<p>
 								<b>Overview:</b>
@@ -151,8 +151,8 @@ export default {
 			const url = _.get(obj, str)
 			return url
 		},
-		format(date) {
-			return moment(date).format("llll")
+		format(timestamp) {
+			return moment(timestamp * 1000).format("llll")
 		},
 		upperFirst(str) {
 			const s = _.upperFirst(str)
