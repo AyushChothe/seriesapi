@@ -132,15 +132,24 @@ export default {
 					this.data = res.data
 
 					let arr = Array()
-					for (let i = 1; i <= res.data.num_seasons; i++) {
+					let seas = Array()
+
+					res.data.episodes.forEach(ep => {
+						seas.push(ep.season)
+					})
+					seas = _.sortBy(_.uniq(seas), e => {
+						return e
+					})
+					console.log(seas)
+					seas.forEach(s => {
 						let sea = _.sortBy(
-							_.filter(res.data.episodes, { season: i }),
+							_.filter(res.data.episodes, { season: s }),
 							e => {
 								return e.episode
 							}
 						)
 						arr.push(sea)
-					}
+					})
 					this.seasons = arr
 				})
 				.catch(err => {
